@@ -10,6 +10,8 @@ import requests
 from io import BytesIO
 from PIL import Image, ImageDraw, ImageFont
 import logging
+from typing import Tuple
+
 
 from db import get_db  # This function returns a sqlite3.Connection object
 from upgrades import UPGRADES  # Contains upgrade data
@@ -254,7 +256,7 @@ class EconomyCog(commands.Cog):
                 return True
         return False
 
-    def can_activate_upgrade(self, user_id: str, upgrade_key: str) -> tuple[bool, int]:
+    def can_activate_upgrade(self, user_id: str, upgrade_key: str) -> Tuple[bool, int]:
         last_activation = self.get_cooldown(user_id, f"{upgrade_key}_last")
         upgrade = next((u for u in UPGRADES.values() if u["key"] == upgrade_key), None)
         if upgrade is None:
