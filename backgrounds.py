@@ -7,6 +7,7 @@ import requests
 from io import BytesIO
 from PIL import Image, ImageDraw, ImageFont
 import time
+from typing import Tuple
 
 from db import get_db  # Using our SQL helper
 
